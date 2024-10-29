@@ -25,17 +25,26 @@ const App = () => {
   ];
 
   const [users, setUsers] = useState(baseUsers);
-  const [limit, setLimit] = useState(10);
+  const [usersCount, setUsersCount] = useState(10);
+
+  const showMore = () => {
+    setUsersCount(usersCount + 5);
+  };
+
+  const showLess = () => {
+    setUsersCount(usersCount - 5);
+  };
+
   return (
     <>
       <h1>Users</h1>
       <ul>
-        {users.slice(0, limit).map((user) => (
+        {users.slice(0, usersCount).map((user) => (
           <li key={user.id}>{user.userName}</li>
         ))}
       </ul>
-      <button>More</button>
-      <button>Less</button>
+      <button onClick={showMore}>More</button>
+      <button onClick={showLess}>Less</button>
     </>
   );
 };
