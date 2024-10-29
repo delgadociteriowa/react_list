@@ -34,6 +34,8 @@ const App = () => {
           <li key={user.id}>{user.userName}</li>
         ))}
       </ul>
+      <button>More</button>
+      <button>Less</button>
     </>
   );
 };
