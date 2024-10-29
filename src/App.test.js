@@ -45,4 +45,16 @@ describe('Users App', () => {
     const baseUsersCount = screen.getAllByRole('listitem').length;
     expect(baseUsersCount).toBe(5);
   });
+
+  it('Hides More button when total users are shown', () => {
+    const moreButton = screen.getByRole('button', { name: /More/i });
+    clickButton(2, 'More');
+    expect(moreButton).not.toBeInTheDocument();
+  });
+
+  it('Hides Less button when there are no users to show', () => {
+    const lessButton = screen.getByRole('button', { name: /Less/i });
+    clickButton(2, 'Less');
+    expect(lessButton).not.toBeInTheDocument();
+  });
 });

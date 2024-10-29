@@ -43,8 +43,8 @@ const App = () => {
           <li key={user.id}>{user.userName}</li>
         ))}
       </ul>
-      <button onClick={showMore}>More</button>
-      <button onClick={showLess}>Less</button>
+      {usersCount === 20 ? null : <button onClick={showMore}>More</button>}
+      {usersCount === 0 ? null : <button onClick={showLess}>Less</button>}
     </>
   );
 };
