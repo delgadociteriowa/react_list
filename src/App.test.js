@@ -1,6 +1,29 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from './App.js';
+
+const mockedJson = [
+  { id: 847202, login: 'Juan' },
+  { id: 298347, login: 'María' },
+  { id: 927384, login: 'Carlos' },
+  { id: 483920, login: 'Ana' },
+  { id: 230948, login: 'Luis' },
+  { id: 987234, login: 'Elena' },
+  { id: 109283, login: 'Miguel' },
+  { id: 564738, login: 'Lucía' },
+  { id: 784930, login: 'Pedro' },
+  { id: 837291, login: 'Carmen' },
+  { id: 394820, login: 'Jorge' },
+  { id: 562837, login: 'Marta' },
+  { id: 918374, login: 'Rafael' },
+  { id: 728394, login: 'Sofía' },
+  { id: 239847, login: 'Antonio' },
+  { id: 734829, login: 'Isabel' },
+  { id: 982347, login: 'Diego' },
+  { id: 872340, login: 'Paula' },
+  { id: 182734, login: 'Manuel' },
+  { id: 983470, login: 'Laura' },
+];
 
 const clickButton = (times, button) => {
   const buttonClick = screen.getByRole('button', { name: button });
@@ -10,8 +33,20 @@ const clickButton = (times, button) => {
 };
 
 describe('Users App', () => {
+  beforeAll(() => {
+    global.fetch = jest.fn();
+  });
+
   beforeEach(() => {
+    fetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => mockedJson,
+    });
     render(<App />);
+  });
+
+  afterEach(() => {
+    fetch.mockClear();
   });
 
   it('Shows Users Title', () => {
@@ -19,9 +54,11 @@ describe('Users App', () => {
     expect(headingElement).toBeInTheDocument();
   });
 
-  it('Shows five users on initial render', () => {
-    const listItems = screen.getAllByRole('listitem').length;
-    expect(listItems).toBe(10);
+  it('Shows five users on initial render', async () => {
+    await waitFor(() => {
+      const listItems = screen.getAllByRole('listitem').length;
+      expect(listItems).toBe(10);
+    });
   });
 
   it('Shows More button', () => {
