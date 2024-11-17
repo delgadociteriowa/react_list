@@ -1,4 +1,5 @@
-import react, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Users from './components/Users';
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -33,11 +34,7 @@ const App = () => {
   return (
     <>
       <h1>Users</h1>
-      <ul>
-        {users.slice(0, usersCount).map((user) => (
-          <li key={user.id}>{user.login}</li>
-        ))}
-      </ul>
+      <Users users={users} usersCount={usersCount} />
       {usersCount === 20 ? null : <button onClick={showMore}>More</button>}
       {usersCount === 0 ? null : <button onClick={showLess}>Less</button>}
     </>
