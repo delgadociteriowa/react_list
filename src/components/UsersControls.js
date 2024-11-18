@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import UsersContext from '../context/UsersContext';
+import UserContext from '../context/user/userContext';
 
 const UsersControls = () => {
-  const usersContext = useContext(UsersContext);
-  const { usersCount, showMore, showLess } = usersContext;
+  const userContext = useContext(UserContext);
+  const { usersCount, showMore, showLess } = userContext;
   return (
     <>
       {usersCount === 20 ? null : <button onClick={showMore}>More</button>}

@@ -1,16 +1,16 @@
 import React from 'react';
 import Users from './components/Users';
 import UsersControls from './components/UsersControls';
-import UsersState from './context/UsersState';
+import UserState from './context/user/UserState';
 
 const App = () => {
   return (
     <>
-      <UsersState>
+      <UserState>
         <h1>Users</h1>
         <Users />
         <UsersControls />
-      </UsersState>
+      </UserState>
     </>
   );
 };

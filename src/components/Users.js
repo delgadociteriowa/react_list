@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import UsersContext from '../context/UsersContext';
+import UserContext from '../context/user/userContext';
 
 const Users = () => {
-  const usersContext = useContext(UsersContext);
-  const { users, usersCount } = usersContext;
+  const userContext = useContext(UserContext);
+  const { users, usersCount } = userContext;
   return (
     <ul>
       {users.slice(0, usersCount).map((user) => (
